@@ -1,7 +1,12 @@
 <?php
-require_once('functions.php');
-signup($_POST,'database.csv', 'banned.csv');
-?><!doctype html>
+if(count($_POST)>0) {
+    require_once('pdo.php');
+    signup($pdo, [$_POST['email'],$_POST['username'],$_POST['password']]);
+}
+?>
+
+
+<!doctype html>
 <html lang="en">
   <head>
     <!-- Required meta tags -->
@@ -18,8 +23,8 @@ signup($_POST,'database.csv', 'banned.csv');
     <h1>Create a new account</h1>
 <form method="POST" action="<?= $_SERVER['PHP_SELF'] ?>">
   <div class="form-group">
-    <label>First and last name</label>
-    <input required type="text" class="form-control" name="name">
+    <label>Username</label>
+    <input required type="text" class="form-control" name="username">
   </div>
   <div class="form-group">
     <label>Email address</label>
