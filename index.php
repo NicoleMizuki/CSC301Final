@@ -1,4 +1,7 @@
-<?php session_start(); ?>
+<?php
+session_start();
+
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -7,45 +10,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="css.css">
 
-    <title>Public area</title>
+    <title>Final Project</title>
   </head>
   <body>
-  <div class="container">
-    <h1>Public area</h1>
-	<p class="lead">The content of this page should be visible to anybody</p>
-	<p>Only logged users should be admitted to the <a href="private.php">private area</a>.</p>
-	
-  
-  <?php
-  
-    if(!isset($_SESSION['userID'])){
-      // Only show login/register buttons if logged out.
-      echo('
-        <h4>Be careful</h4>  
-        <p class="lead">The following buttons should be visible in the public area</p>
-        <p>    
-          <a href="signup.php" class="btn btn-primary">Register an account</a>
-          <a href="signin.php" class="btn btn-primary">Access your account</a>
-        </p>'
-    );} ?>
-  
-  
-	
-  <?php if(isset($_SESSION['userID'])){
-    // Only show logout button if logged in.
-    echo('
-      <p class="lead">The following button should be visible in the private and public areas, instead, but only if the user is logged in</p>
-      <p><a href="signout.php" class="btn btn-primary">Sign out your account</a></p>
-    '
-  );} ?>
+    
+    <?php if(!isset($_SESSION['userID'])){
+    //sign in, sign up buttons
+        echo 
+        '<a href="/final/signin.php" class="btn btn-primary">Sign in</a>
+        </hr>
+        <a href="/final/signup.php" class="btn btn-primary">Sign up</a>
+        </hr>';
+        }
+    ?>
+    <?php if(isset($_SESSION['userID'])){
+        //sign out button
+        echo 
+        '<a href="signout.php" class="btn btn-primary">Sign out</a>';
+        echo 
+        '<a href="accountdetails.php" class="btn btn-primary">Account Details</a>';
+        echo 
+        '<a href="recipeAdd.php" class="btn btn-primary">Add a Recipe</a>';
+        }
+    ?>
+    <div class="card-container">
+      <div class="card u-clearfix">
+        <div class="card-body">
+          <span class="card-number card-circle subtle">01</span>
+          <span class="card-author subtle">John Smith</span>
+          <h2 class="card-title">New Brunch Recipe</h2>
+          <span class="card-description subtle">These last few weeks I have been working hard on a new brunch recipe for you all.</span>
+          <div class="card-read">Read</div>
+          <span class="card-tag card-circle subtle">C</span>
+        </div>
+        <img src="https://s15.postimg.cc/temvv7u4r/recipe.jpg" alt="" class="card-media" />
+      </div>
+      <div class="card-shadow"></div>
+    </div>
 
-</div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   </body>
 </html>
+

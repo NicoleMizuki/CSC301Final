@@ -1,7 +1,11 @@
 <?php
-require_once('functions.php');
-signin($_POST,'database.csv');
-?><!doctype html>
+if(count($_POST)>0) {
+    require_once('pdo.php');
+    signin($pdo,[$_POST['email'],$_POST['password']]);
+}
+?>
+
+<!doctype html>
 <html lang="en">
   <head>
     <!-- Required meta tags -->
@@ -18,7 +22,7 @@ signin($_POST,'database.csv');
     <h1>Access your account</h1>
 <form method="POST" action="<?= $_SERVER['PHP_SELF'] ?>">
   <div class="form-group">
-    <label>Email address</label>
+    <label>Email</label>
     <input required type="email" class="form-control" name="email">
   </div>
   <div class="form-group">
