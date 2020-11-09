@@ -1,10 +1,10 @@
 <?php
+session_start();
 if(count($_POST)>0) {
     require_once('pdo.php');
-    signup($pdo, [$_POST['email'],$_POST['username'],$_POST['password']]);
+    changepassword($pdo,[$_SESSION['userID'],$_POST['password'],$_POST['confirmpassword']]);
 }
 ?>
-
 
 <!doctype html>
 <html lang="en">
@@ -16,23 +16,19 @@ if(count($_POST)>0) {
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-    <title>Create a new account</title>
+    <title>Change Password</title>
   </head>
   <body>
   <div class="container">
-    <h1>Create a new account</h1>
+    <h1>Change your password</h1>
 <form method="POST" action="<?= $_SERVER['PHP_SELF'] ?>">
-  <div class="form-group">
-    <label>Username</label>
-    <input required type="text" class="form-control" name="username">
-  </div>
-  <div class="form-group">
-    <label>Email address</label>
-    <input required type="email" class="form-control" name="email">
-  </div>
-  <div class="form-group">
-    <label>Password</label>
+    <div class="form-group">
+    <label>New Password</label>
     <input required type="password" class="form-control" name="password">
+  </div>
+  <div class="form-group">
+    <label>Confirm Password</label>
+    <input required type="password" class="form-control" name="confirmpassword">
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
